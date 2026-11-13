@@ -1,4 +1,4 @@
-# Kiddy Spiders
+# FireSync
 
 **Transparent, reproducible harmonization of MODIS and VIIRS active-fire detections.**
 
@@ -36,7 +36,7 @@ NASA Space Apps Challenge 2026 | Challenge: *Harmonization of MODIS and VIIRS Ho
 
 ## 1. Project Overview
 
-Kiddy Spiders is a software project developed for the NASA Space Apps Challenge 2026. It explores how active-fire observations from two NASA satellite instruments, **MODIS** (Moderate Resolution Imaging Spectroradiometer) and **VIIRS** (Visible Infrared Imaging Radiometer Suite), can be compared and harmonized.
+FireSync is a software project developed for the NASA Space Apps Challenge 2026. It explores how active-fire observations from two NASA satellite instruments, **MODIS** (Moderate Resolution Imaging Spectroradiometer) and **VIIRS** (Visible Infrared Imaging Radiometer Suite), can be compared and harmonized.
 
 The two instruments have produced thermal-anomaly detections for years, and both are distributed through NASA FIRMS (Fire Information for Resource Management System). Because they differ in spatial resolution, overpass timing, and detection algorithms, their records cannot be merged by simple concatenation. This project investigates methods for aligning them in space and time, comparing them statistically, and presenting the result in an interactive interface while keeping every record traceable to its source sensor.
 
@@ -54,7 +54,7 @@ Without careful harmonization, combining the two records risks double counting, 
 
 ## 3. Proposed Solution
 
-Kiddy Spiders proposes a pipeline and web interface that:
+FireSync proposes a pipeline and web interface that:
 
 1. Ingests MODIS and VIIRS active-fire data from NASA FIRMS.
 2. Normalizes the schemas while **preserving sensor, satellite, product, and processing-type provenance** on every record.
@@ -199,7 +199,7 @@ Design considerations:
 > **Suggested structure, not verified.** This tree is a proposal. Replace it with the actual layout once the repository is organized.
 
 ```text
-kiddy-spiders/
+FireSync/
 ├── README.md
 ├── LICENSE
 ├── backend/            # Python: ingestion, harmonization, analysis
@@ -226,8 +226,8 @@ kiddy-spiders/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_ORG/YOUR_REPO.git
-cd YOUR_REPO
+git clone https://github.com/t3chn0-17/FireSync.git
+cd FireSync
 ```
 
 ### Backend
@@ -260,7 +260,7 @@ Never commit secrets to the repository.
 Example `.env` file, to be kept out of version control:
 
 ```bash
-FIRMS_MAP_KEY=your_map_key_here
+FIRMS_MAP_KEY=no_specified_yet
 ```
 
 ## 14. API Documentation
