@@ -1,15 +1,15 @@
 # Dependencies
-/node_modules/
-/.pnp
+node_modules/
+.pnp
 .pnp.js
 
 # Testing / Coverage
-/coverage/
-/.nyc_output/
+coverage/
+.nyc_output/
 
 # Production Build / Output
-/dist/
-/build/
+dist/
+build/
 *.out
 
 # Environment Variables & Secrets
@@ -28,6 +28,7 @@
 *.sln
 *.swp
 *.swo
+.venv/
 
 # Operating System Generated Files
 # Windows
