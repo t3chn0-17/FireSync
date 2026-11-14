@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FireSync · Fire calendar</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="name">FireSync</span>
+      <span class="tagline">Different sensors. One common view.</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Map</a>
+      <a href="calendar.html" class="active">Calendar</a>
+    </nav>
+    <div class="data-badge" id="dataBadge">
+      <span class="dot"></span>
+      <span id="dataBadgeText">Loading data…</span>
+    </div>
+  </header>
+
+  <main class="cal-page">
+    <div class="summary-row">
+      <div class="stat-box"><div class="num" id="sumTotal">—</div><div class="lbl">hotspot observations</div></div>
+      <div class="stat-box"><div class="num" id="sumDays">—</div><div class="lbl">days with observations (UTC)</div></div>
+      <div class="stat-box"><div class="num" id="sumCells">—</div><div class="lbl">unique 1 km grid cells</div></div>
+      <div class="stat-box"><div class="num" id="sumPlatforms">—</div><div class="lbl">satellite platforms</div></div>
+    </div>
+
+    <div class="cal-card">
+      <div class="cal-head">
+        <button id="prevMonth" title="Previous month">‹</button>
+        <div class="month" id="monthLabel">—</div>
+        <button id="nextMonth" title="Next month">›</button>
+      </div>
+      <div class="cal-grid" id="calGrid"><!-- built by js --></div>
+      <div class="hint">
+        Numbers = hotspot observations acquired on that UTC day. One dot = one satellite detection, not a fire perimeter.
+        Click a day to see what each platform recorded.
+      </div>
+    </div>
+
+    <div class="day-detail" id="dayDetail"><!-- built by js --></div>
+  </main>
+
+  <script src="js/demo-data.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/calendar.js"></script>
+</body>
+</html>

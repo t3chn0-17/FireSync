@@ -1,0 +1,436 @@
+{
+  "by_sensor": [
+    {
+      "sensor": "MODIS",
+      "observations": 33,
+      "unique_grid_cells": 31,
+      "day_count": 24,
+      "night_count": 9,
+      "frp_mean": 47.971,
+      "frp_median": 20.03,
+      "frp_max": 395.34,
+      "daily_counts": {
+        "2026-11-01": 2,
+        "2026-11-02": 15,
+        "2026-11-03": 2,
+        "2026-11-04": 3,
+        "2026-11-05": 5,
+        "2026-11-07": 4,
+        "2026-11-09": 2
+      }
+    },
+    {
+      "sensor": "VIIRS",
+      "observations": 1249,
+      "unique_grid_cells": 426,
+      "day_count": 227,
+      "night_count": 1022,
+      "frp_mean": 2.569,
+      "frp_median": 1.33,
+      "frp_max": 110.25,
+      "daily_counts": {
+        "2026-11-01": 142,
+        "2026-11-02": 269,
+        "2026-11-03": 152,
+        "2026-11-04": 78,
+        "2026-11-05": 151,
+        "2026-11-06": 37,
+        "2026-11-07": 144,
+        "2026-11-08": 150,
+        "2026-11-09": 126
+      }
+    }
+  ],
+  "by_platform": [
+    {
+      "platform": "MODIS",
+      "observations": 33,
+      "unique_grid_cells": 31,
+      "day_count": 24,
+      "night_count": 9,
+      "frp_mean": 47.971,
+      "frp_median": 20.03,
+      "frp_max": 395.34,
+      "daily_counts": {
+        "2026-11-01": 2,
+        "2026-11-02": 15,
+        "2026-11-03": 2,
+        "2026-11-04": 3,
+        "2026-11-05": 5,
+        "2026-11-07": 4,
+        "2026-11-09": 2
+      }
+    },
+    {
+      "platform": "VIIRS_NOAA20",
+      "observations": 505,
+      "unique_grid_cells": 245,
+      "day_count": 93,
+      "night_count": 412,
+      "frp_mean": 2.258,
+      "frp_median": 1.27,
+      "frp_max": 58.53,
+      "daily_counts": {
+        "2026-11-01": 55,
+        "2026-11-02": 63,
+        "2026-11-03": 54,
+        "2026-11-04": 19,
+        "2026-11-05": 126,
+        "2026-11-06": 32,
+        "2026-11-07": 40,
+        "2026-11-08": 61,
+        "2026-11-09": 55
+      }
+    },
+    {
+      "platform": "VIIRS_NOAA21",
+      "observations": 645,
+      "unique_grid_cells": 273,
+      "day_count": 112,
+      "night_count": 533,
+      "frp_mean": 2.616,
+      "frp_median": 1.36,
+      "frp_max": 110.25,
+      "daily_counts": {
+        "2026-11-01": 55,
+        "2026-11-02": 139,
+        "2026-11-03": 98,
+        "2026-11-04": 59,
+        "2026-11-05": 25,
+        "2026-11-06": 5,
+        "2026-11-07": 104,
+        "2026-11-08": 89,
+        "2026-11-09": 71
+      }
+    },
+    {
+      "platform": "VIIRS_SNPP",
+      "observations": 99,
+      "unique_grid_cells": 58,
+      "day_count": 22,
+      "night_count": 77,
+      "frp_mean": 3.851,
+      "frp_median": 1.4,
+      "frp_max": 38.23,
+      "daily_counts": {
+        "2026-11-01": 32,
+        "2026-11-02": 67
+      }
+    }
+  ],
+  "by_satellite": [
+    {
+      "satellite": "Aqua",
+      "observations": 6,
+      "unique_grid_cells": 6,
+      "day_count": 5,
+      "night_count": 1,
+      "frp_mean": 9.0,
+      "frp_median": 6.455,
+      "frp_max": 22.4,
+      "daily_counts": {
+        "2026-11-02": 2,
+        "2026-11-04": 1,
+        "2026-11-05": 3
+      }
+    },
+    {
+      "satellite": "N20",
+      "observations": 505,
+      "unique_grid_cells": 245,
+      "day_count": 93,
+      "night_count": 412,
+      "frp_mean": 2.258,
+      "frp_median": 1.27,
+      "frp_max": 58.53,
+      "daily_counts": {
+        "2026-11-01": 55,
+        "2026-11-02": 63,
+        "2026-11-03": 54,
+        "2026-11-04": 19,
+        "2026-11-05": 126,
+        "2026-11-06": 32,
+        "2026-11-07": 40,
+        "2026-11-08": 61,
+        "2026-11-09": 55
+      }
+    },
+    {
+      "satellite": "N21",
+      "observations": 645,
+      "unique_grid_cells": 273,
+      "day_count": 112,
+      "night_count": 533,
+      "frp_mean": 2.616,
+      "frp_median": 1.36,
+      "frp_max": 110.25,
+      "daily_counts": {
+        "2026-11-01": 55,
+        "2026-11-02": 139,
+        "2026-11-03": 98,
+        "2026-11-04": 59,
+        "2026-11-05": 25,
+        "2026-11-06": 5,
+        "2026-11-07": 104,
+        "2026-11-08": 89,
+        "2026-11-09": 71
+      }
+    },
+    {
+      "satellite": "SNPP",
+      "observations": 99,
+      "unique_grid_cells": 58,
+      "day_count": 22,
+      "night_count": 77,
+      "frp_mean": 3.851,
+      "frp_median": 1.4,
+      "frp_max": 38.23,
+      "daily_counts": {
+        "2026-11-01": 32,
+        "2026-11-02": 67
+      }
+    },
+    {
+      "satellite": "Terra",
+      "observations": 27,
+      "unique_grid_cells": 26,
+      "day_count": 19,
+      "night_count": 8,
+      "frp_mean": 56.631,
+      "frp_median": 22.99,
+      "frp_max": 395.34,
+      "daily_counts": {
+        "2026-11-01": 2,
+        "2026-11-02": 13,
+        "2026-11-03": 2,
+        "2026-11-04": 2,
+        "2026-11-05": 2,
+        "2026-11-07": 4,
+        "2026-11-09": 2
+      }
+    }
+  ],
+  "daily_counts": [
+    {
+      "date": "2026-11-01",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Terra",
+      "observations": 2
+    },
+    {
+      "date": "2026-11-01",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA20",
+      "satellite": "N20",
+      "observations": 55
+    },
+    {
+      "date": "2026-11-01",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA21",
+      "satellite": "N21",
+      "observations": 55
+    },
+    {
+      "date": "2026-11-01",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_SNPP",
+      "satellite": "SNPP",
+      "observations": 32
+    },
+    {
+      "date": "2026-11-02",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Aqua",
+      "observations": 2
+    },
+    {
+      "date": "2026-11-02",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Terra",
+      "observations": 13
+    },
+    {
+      "date": "2026-11-02",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA20",
+      "satellite": "N20",
+      "observations": 63
+    },
+    {
+      "date": "2026-11-02",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA21",
+      "satellite": "N21",
+      "observations": 139
+    },
+    {
+      "date": "2026-11-02",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_SNPP",
+      "satellite": "SNPP",
+      "observations": 67
+    },
+    {
+      "date": "2026-11-03",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Terra",
+      "observations": 2
+    },
+    {
+      "date": "2026-11-03",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA20",
+      "satellite": "N20",
+      "observations": 54
+    },
+    {
+      "date": "2026-11-03",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA21",
+      "satellite": "N21",
+      "observations": 98
+    },
+    {
+      "date": "2026-11-04",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Aqua",
+      "observations": 1
+    },
+    {
+      "date": "2026-11-04",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Terra",
+      "observations": 2
+    },
+    {
+      "date": "2026-11-04",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA20",
+      "satellite": "N20",
+      "observations": 19
+    },
+    {
+      "date": "2026-11-04",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA21",
+      "satellite": "N21",
+      "observations": 59
+    },
+    {
+      "date": "2026-11-05",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Aqua",
+      "observations": 3
+    },
+    {
+      "date": "2026-11-05",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Terra",
+      "observations": 2
+    },
+    {
+      "date": "2026-11-05",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA20",
+      "satellite": "N20",
+      "observations": 126
+    },
+    {
+      "date": "2026-11-05",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA21",
+      "satellite": "N21",
+      "observations": 25
+    },
+    {
+      "date": "2026-11-06",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA20",
+      "satellite": "N20",
+      "observations": 32
+    },
+    {
+      "date": "2026-11-06",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA21",
+      "satellite": "N21",
+      "observations": 5
+    },
+    {
+      "date": "2026-11-07",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Terra",
+      "observations": 4
+    },
+    {
+      "date": "2026-11-07",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA20",
+      "satellite": "N20",
+      "observations": 40
+    },
+    {
+      "date": "2026-11-07",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA21",
+      "satellite": "N21",
+      "observations": 104
+    },
+    {
+      "date": "2026-11-08",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA20",
+      "satellite": "N20",
+      "observations": 61
+    },
+    {
+      "date": "2026-11-08",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA21",
+      "satellite": "N21",
+      "observations": 89
+    },
+    {
+      "date": "2026-11-09",
+      "sensor": "MODIS",
+      "platform": "MODIS",
+      "satellite": "Terra",
+      "observations": 2
+    },
+    {
+      "date": "2026-11-09",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA20",
+      "satellite": "N20",
+      "observations": 55
+    },
+    {
+      "date": "2026-11-09",
+      "sensor": "VIIRS",
+      "platform": "VIIRS_NOAA21",
+      "satellite": "N21",
+      "observations": 71
+    }
+  ],
+  "day_night": {
+    "day": 251,
+    "night": 1031
+  },
+  "notes": [
+    "Observation counts reflect sensor overpasses, resolution and detection sensitivity; they do not indicate that one sensor is better than another.",
+    "FRP values from different sensors are shown side by side and are never summed or merged.",
+    "Confidence is the original NASA value (MODIS: 0-100 numeric; VIIRS: l/n/h categorical) and is not comparable across sensors.",
+    "Unique grid cells are not unique fires; several detections in one cell/day may or may not be the same fire.",
+    "Prototype built on NASA FIRMS NRT data; not validated or endorsed by NASA."
+  ]
+}
