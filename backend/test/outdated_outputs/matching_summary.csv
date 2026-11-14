@@ -1,0 +1,4 @@
+platform,modis_observations,viirs_observations,candidate_pairs,matched_pairs,unmatched_modis,unmatched_viirs
+VIIRS_SNPP,33,99,28,7,26,92
+VIIRS_NOAA20,33,505,88,12,21,493
+VIIRS_NOAA21,33,645,107,14,19,631
