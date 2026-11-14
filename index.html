@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FireSync Documentation</title>
+<meta name="description" content="Documentation for FireSync, a prototype that compares NASA FIRMS MODIS and VIIRS active-fire observations over Egypt.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <button class="btn menu" id="menu" aria-expanded="false" aria-controls="side">Menu</button>
+  <a class="brand" href="#top"><i></i>FireSync</a>
+  <button class="btn" id="theme" aria-label="Toggle light and dark theme">Theme</button>
+</header>
+<div class="layout" id="top">
+<nav class="side" id="side" aria-label="Documentation">
+  <a href="#overview">Overview</a><a href="#quickstart">Quick start</a><a href="#architecture">Architecture</a>
+  <a href="#data">Data and platforms</a><a href="#outputs">Processed outputs</a><a href="#api">API reference</a>
+  <a href="#frontend">Frontend integration</a><a href="#science">Scientific notes</a><a href="#limits">Limitations</a>
+</nav>
+<main>
+<div class="hero">
+  <h1>FireSync documentation</h1>
+  <p>FireSync compares NASA FIRMS active-fire observations from MODIS and VIIRS over Egypt, platform by platform, without merging them. Built for the NASA Space Apps Challenge 2026: Harmonization of MODIS and VIIRS Hot Spots.</p>
+  <div class="heat" aria-hidden="true"></div>
+  <div class="plats" aria-label="Observations per platform, 1–9 November 2026">
+    <div class="plat" style="--c:#d9482b"><b>27</b><span>MODIS · Terra</span></div>
+    <div class="plat" style="--c:#f0a22e"><b>6</b><span>MODIS · Aqua</span></div>
+    <div class="plat" style="--c:#1b998b"><b>99</b><span>VIIRS · Suomi-NPP</span></div>
+    <div class="plat" style="--c:#2a7fb8"><b>505</b><span>VIIRS · NOAA-20</span></div>
+    <div class="plat" style="--c:#6b5bb5"><b>645</b><span>VIIRS · NOAA-21</span></div>
+  </div>
+</div>
+
+<section id="overview"><h2>Overview</h2>
+<p>The prototype turns four FIRMS CSV downloads (1,282 observations, 449 one-kilometre grid cells) into aggregated datasets and a read-only REST API for a MapLibre dashboard.</p>
+<div class="cards">
+  <div class="card"><h3>Keeps platforms apart</h3><p>Every aggregate carries sensor and platform. FRP is never summed across sensors.</p></div>
+  <div class="card"><h3>Real data only</h3><p>The API serves processed FIRMS records. Nothing is mocked or invented.</p></div>
+  <div class="card"><h3>Simple stack</h3><p>Python, pandas, PyProj and FastAPI. CSV and JSON files, no database.</p></div>
+</div></section>
+
+<section id="quickstart"><h2>Quick start</h2>
+<p>Requires Python 3.10 or newer. Put the four FIRMS CSV files in <code>data/</code>.</p>
+<div class="code"><pre>pip install -r requirements.txt
+cp .env.example .env
+python pipeline.py        # validate + assign 1 km grid
+python harmonization.py   # daily, platform and spatial aggregates
+python api.py             # serves on 0.0.0.0:8000
+python test_api.py        # optional: run the test suite</pre></div>
+<p>Open <code>http://&lt;your-lan-ip&gt;:8000/docs</code> for the interactive API explorer. Other devices must use the LAN IP, not <code>localhost</code>.</p></section>
+
+<section id="architecture"><h2>Architecture</h2>
+<div class="flow"><span>data/*.csv</span><em>→</em><span>pipeline.py</span><em>→</em><span>normalized_valid.csv</span><em>→</em><span>harmonization.py</span><em>→</em><span>output/*.csv, *.json</span><em>→</em><span>api.py</span><em>→</em><span>MapLibre frontend</span></div>
+<p><code>pipeline.py</code> loads, normalizes and validates records, then assigns grid cells with EPSG:6933. <code>harmonization.py</code> builds aggregates and checks that they add up to the source count. <code>api.py</code> loads the outputs at startup and serves them as JSON and GeoJSON.</p>
+<div class="tw"><table><tr><th>File</th><th>Role</th></tr>
+<tr><td><code>pipeline.py</code></td><td>Load, normalize, validate, grid assignment</td></tr>
+<tr><td><code>harmonization.py</code></td><td>Daily harmonization, statistics, spatial summary, integrity report</td></tr>
+<tr><td><code>api.py</code></td><td>FastAPI server with CORS and filters</td></tr>
+<tr><td><code>test_api.py</code></td><td>Endpoint, filter and GeoJSON coordinate tests</td></tr></table></div></section>
+
+<section id="data"><h2>Data and platforms</h2>
+<p>Source: NASA FIRMS near-real-time CSV downloads for Egypt, 1–9 November 2026.</p>
+<div class="tw"><table><tr><th>Sensor</th><th>Platform</th><th>Satellite</th><th>Observations</th></tr>
+<tr><td>MODIS</td><td><code>MODIS</code></td><td>Terra</td><td>27</td></tr>
+<tr><td>MODIS</td><td><code>MODIS</code></td><td>Aqua</td><td>6</td></tr>
+<tr><td>VIIRS</td><td><code>VIIRS_SNPP</code></td><td>SNPP</td><td>99</td></tr>
+<tr><td>VIIRS</td><td><code>VIIRS_NOAA20</code></td><td>N20</td><td>505</td></tr>
+<tr><td>VIIRS</td><td><code>VIIRS_NOAA21</code></td><td>N21</td><td>645</td></tr></table></div>
+<p>Terra and Aqua share one MODIS file, so filter by <code>satellite</code> to tell them apart.</p></section>
+
+<section id="outputs"><h2>Processed outputs</h2>
+<div class="tw"><table><tr><th>File (in <code>output/</code>)</th><th>Contents</th></tr>
+<tr><td><code>normalized_valid.csv</code>, <code>rejected_records.csv</code></td><td>Pipeline results: 1,282 valid, 0 rejected</td></tr>
+<tr><td><code>observations_indexed.csv</code></td><td>Valid records plus a deterministic <code>observation_id</code></td></tr>
+<tr><td><code>harmonized_daily.csv</code></td><td>One row per grid cell, date and platform: count, FRP mean/median/max, brightness mean, day/night counts, first/last observation (1,010 rows)</td></tr>
+<tr><td><code>spatial_summary.csv</code></td><td>Per grid cell: WGS84 centre, counts, platform distribution, FRP summary</td></tr>
+<tr><td><code>platform_statistics.json</code></td><td>Dashboard statistics by sensor, platform and satellite</td></tr>
+<tr><td><code>integrity_report.json</code></td><td>Traceability check: daily totals equal valid records</td></tr></table></div></section>
+
+<section id="api"><h2>API reference</h2>
+<p>All endpoints are <code>GET</code> unless noted. Filters: <code>start_date</code>, <code>end_date</code> (YYYY-MM-DD), <code>sensor</code>, <code>platform</code>, <code>satellite</code>, <code>min_frp</code>, <code>max_frp</code>, <code>limit</code>. Several values can be comma-separated.</p>
+<div class="tw"><table><tr><th>Endpoint</th><th>Returns</th></tr>
+<tr><td><span class="get">GET</span><code>/health</code></td><td>API status and whether processed data is loaded</td></tr>
+<tr><td><span class="get">GET</span><code>/api/overview</code></td><td>Totals, sensors, platforms, date range, valid and rejected counts</td></tr>
+<tr><td><span class="get">GET</span><code>/api/observations</code></td><td>Paginated observations (<code>limit</code>, <code>offset</code>)</td></tr>
+<tr><td><span class="get">GET</span><code>/api/observations/{id}</code></td><td>One observation</td></tr>
+<tr><td><span class="get">GET</span><code>/api/hotspots/geojson</code></td><td>GeoJSON FeatureCollection, WGS84 <code>[lon, lat]</code></td></tr>
+<tr><td><span class="get">GET</span><code>/api/harmonization</code></td><td>Daily cell-date-platform rows</td></tr>
+<tr><td><span class="get">GET</span><code>/api/statistics</code></td><td>Chart-ready platform and sensor statistics</td></tr>
+<tr><td><span class="get">GET</span><code>/api/grid/{grid_id}</code></td><td>One cell: platform stats, daily rows, observations</td></tr></table></div>
+<details><summary><code>/api/overview</code> example</summary>
+<div class="code"><pre>{
+  "total_observations": 1282,
+  "unique_grid_cells": 449,
+  "sensors": 2,
+  "platforms": 4,
+  "date_range": { "start": "2026-11-01", "end": "2026-11-09" },
+  "valid_records": 1282,
+  "rejected_records": 0
+}</pre></div></details>
+<details><summary><code>/api/hotspots/geojson?satellite=Terra&amp;limit=1</code> example</summary>
+<div class="code"><pre>{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "id": "obs_b261ebcc67f5",
+    "geometry": { "type": "Point", "coordinates": [31.20726, 31.31819] },
+    "properties": {
+      "grid_id": "3011_3803", "sensor": "MODIS", "platform": "MODIS",
+      "satellite": "Terra", "frp": 8.21, "brightness": 303.88,
+      "confidence": "32", "acq_datetime": "2026-11-01T06:26:00Z"
+    }
+  }],
+  "metadata": { "total_matching": 27, "returned": 1, "crs": "EPSG:4326" }
+}</pre></div></details>
+<p>Errors: <code>400</code> for malformed dates, <code>404</code> for unknown observation or grid IDs.</p></section>
+
+<section id="frontend"><h2>Frontend integration</h2>
+<p>Set the API base URL to the backend machine’s LAN IP. CORS is open by default; restrict it with <code>FIRESYNC_CORS_ORIGINS</code>.</p>
+<div class="code"><pre># .env (backend)
+FIRESYNC_HOST=0.0.0.0
+FIRESYNC_PORT=8000
+FIRESYNC_CORS_ORIGINS=*
+
+# frontend, e.g. Vite
+VITE_API_BASE_URL=http://192.168.1.50:8000</pre></div>
+<p>Add the hotspots to a MapLibre map and colour them by platform:</p>
+<div class="code"><pre>map.on('load', async () =&gt; {
+  const url = `${API}/api/hotspots/geojson?sensor=VIIRS`;
+  map.addSource('hotspots', { type: 'geojson', data: url });
+  map.addLayer({
+    id: 'hotspots', type: 'circle', source: 'hotspots',
+    paint: {
+      'circle-radius': 5,
+      'circle-color': ['match', ['get', 'platform'],
+        'MODIS', '#d9482b', 'VIIRS_SNPP', '#1b998b',
+        'VIIRS_NOAA20', '#2a7fb8', 'VIIRS_NOAA21', '#6b5bb5', '#888']
+    }
+  });
+});</pre></div></section>
+
+<section id="science"><h2>Scientific notes</h2>
+<div class="note"><strong>Read results with care.</strong><ul>
+<li>Detections in one grid cell on one date are not necessarily the same fire. Unique cells are not unique fires.</li>
+<li>MODIS and VIIRS differ in resolution and sensitivity. FRP is never summed or merged across sensors.</li>
+<li>Confidence is kept as in the source: MODIS is numeric (0–100), VIIRS is categorical (l, n, h). The two are not comparable.</li>
+<li>More observations from a platform do not show it is a better sensor.</li></ul></div></section>
+
+<section id="limits"><h2>Limitations</h2>
+<ul><li>Covers Egypt, 1–9 November 2026, from four FIRMS NRT files. It does not predict fires or claim to detect every fire.</li>
+<li>Data is loaded at startup. After re-running the pipeline, call <code>POST /api/reload</code> or restart the server.</li>
+<li>FireSync is a prototype and has not been validated or endorsed by NASA.</li></ul></section>
+<footer>Data: NASA FIRMS. FireSync is an independent Space Apps prototype.</footer>
+</main></div>
+<script src="assets/main.js"></script>
+</body></html>
