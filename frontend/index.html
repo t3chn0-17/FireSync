@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FireSync · Map</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="name">FireSync</span>
+      <span class="tagline">Different sensors. One common view.</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="active">Map</a>
+      <a href="calendar.html">Calendar</a>
+    </nav>
+    <div class="data-badge" id="dataBadge">
+      <span class="dot"></span>
+      <span id="dataBadgeText">Loading data…</span>
+    </div>
+  </header>
+
+  <div class="map-wrap">
+    <div id="map"></div>
+
+    <!-- small side panel above the map -->
+    <aside class="side-panel">
+      <div class="panel-title">Color mode</div>
+      <div class="seg" id="modeSeg">
+        <button id="modeA" class="active">By platform</button>
+        <button id="modeB">By FRP</button>
+      </div>
+
+      <div class="panel-title">Platforms</div>
+      <div class="platform-toggles" id="platformToggles"><!-- built by js --></div>
+
+      <div class="panel-title" id="legendTitle">Legend</div>
+      <div class="legend-frp" id="legendBox" style="display:none">
+        <div class="row"><span class="sw" style="background:var(--frp1)"></span><span class="lab">&lt; 1 <small>MW</small></span></div>
+        <div class="row"><span class="sw" style="background:var(--frp2)"></span><span class="lab">1 – 3 <small>MW</small></span></div>
+        <div class="row"><span class="sw" style="background:var(--frp3)"></span><span class="lab">3 – 10 <small>MW</small></span></div>
+        <div class="row"><span class="sw" style="background:var(--frp4)"></span><span class="lab">≥ 10 <small>MW</small></span></div>
+      </div>
+      <div class="platform-toggles" id="legendColors"><!-- built by js (mode A legend) --></div>
+
+      <div class="panel-title">Date filter</div>
+      <select id="dateFilter"><option value="all">All days</option></select>
+
+      <div class="panel-title">Visible observations</div>
+      <div class="stats" id="statsBox">—</div>
+
+      <div class="note">
+        Color bins are visualization thresholds only, not NASA fire-severity classes.
+        Observations in the same grid cell / day are co-occurrence, not proof of one fire.
+      </div>
+    </aside>
+
+    <!-- selected observation details -->
+    <div class="details-card" id="detailsCard">
+      <button class="close" id="detailsClose">✕</button>
+      <h3><span class="sw" id="dSw"></span><span id="dPlatform">—</span></h3>
+      <div class="frp-big" id="dFrp">— <small>MW FRP</small></div>
+      <div class="kv"><span class="k">Instrument</span><span class="v" id="dInst">—</span></div>
+      <div class="kv"><span class="k">Satellite</span><span class="v" id="dSat">—</span></div>
+      <div class="kv"><span class="k">Acquisition (UTC)</span><span class="v" id="dTime">—</span></div>
+      <div class="kv"><span class="k">Confidence (original)</span><span class="v" id="dConf">—</span></div>
+      <div class="kv"><span class="k">Brightness</span><span class="v" id="dBright">—</span></div>
+      <div class="kv"><span class="k">Day / Night</span><span class="v" id="dDN">—</span></div>
+      <div class="kv"><span class="k">Grid cell (1 km · EPSG:6933)</span><span class="v" id="dGrid">—</span></div>
+      <div class="kv"><span class="k">Coordinates</span><span class="v" id="dCoords">—</span></div>
+    </div>
+
+    <div class="overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <div class="msg">Loading hotspot data…</div>
+    </div>
+    <div class="overlay hidden" id="errorOverlay">
+      <div class="msg" id="errorMsg">Something went wrong.</div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>

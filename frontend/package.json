@@ -1,0 +1,11 @@
+{
+  "name": "firesync-vanilla-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FireSync vanilla JS frontend — NO build step and NO npm dependencies. npm install is not needed; the scripts below only wrap local commands (Python static server + FastAPI).",
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "api": "python server/api.py",
+    "install:api": "pip install -r server/requirements.txt"
+  }
+}

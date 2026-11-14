@@ -1,0 +1,9 @@
+{
+  "valid_records": 1282,
+  "rejected_records": 0,
+  "source_records": 1282,
+  "daily_aggregate_total": 1282,
+  "counts_match": true,
+  "unique_grid_cells": 449,
+  "unique_observation_ids": 1282
+}
